@@ -1,0 +1,23 @@
+StudentID:Student Name: Score
+101:Annette Adams:98
+102:Mary Beard:87
+103:Antoinette Brown:79
+104:Claribel Cone:78
+105:Ema Chang:69
+106:Heesook Kim:99
+107:Larry Liu:98
+108:Brad Lee:53
+109:Eric Ko:95
+110:Richard Ko:96
+111:Shawn Tornton:98
+112:Omar Maghardi:78
+113:Scott Yau:59
+114:Larry Liu:86
+115:Scott Trouchon:69
+116:Patric Zhou:88
+117:Anu Gupta:82
+118:Robert Bloomingdale:90
+119:Patricia Garibaldi:59
+120:Svetlana Rusova:48
+121:Aleksei Titov:99
+122:Xiaowei Young:96
