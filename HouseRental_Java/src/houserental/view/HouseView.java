@@ -73,8 +73,11 @@ public class HouseView {
     // Search house: get the input from user and request search service from HouseService
     public void searchHouse() {
         System.out.println("--------------------Search House------------------");
-        System.out.print("Please enter the id of the house: ");
+        System.out.print("Please enter the id of the house(enter -1 to exit): ");
         int id = Utility.readInt();
+        if(id == -1) {
+            return;
+        }
         if(houseService.search(id) != null) {
             System.out.println("--------------------House Found-------------------");
             System.out.printf("%-4s%-10s%-12s%-20s%-6s%-10s\n", "ID", "Name", "Phone", "Address", "Rent", "Status");
@@ -86,8 +89,11 @@ public class HouseView {
     // Delete house: get the input from user and request delete service from HouseService
     public void deleteHouse() {
         System.out.println("--------------------Delete House------------------");
-        System.out.print("Please enter the id of the house: ");
+        System.out.print("Please enter the id of the house(enter -1 to exit): ");
         int id = Utility.readInt();
+        if(id == -1) {
+            return;
+        }
         if(houseService.search(id) != null) {
             System.out.println("--------------------House Found-------------------");
             System.out.printf("%-4s%-10s%-12s%-20s%-6s%-10s\n", "ID", "Name", "Phone", "Address", "Rent", "Status");
@@ -106,43 +112,49 @@ public class HouseView {
         }
 
     }
-    // Modify house: get the input from user and request modify service from HouseService
+    // Modify house: get the input from user, find the house and update the house
     public void modifyHouse(){
         System.out.println("--------------------Modify House------------------");
-        System.out.print("Please enter the id of the house: ");
+        System.out.print("Please enter the id of the house(enter -1 to exit): ");
         int id = Utility.readInt();
-        if(houseService.search(id) != null) {
-            System.out.println(houseService.search(id));
-            System.out.print("House found, are you sure to modify? ");
-            char confirm = Utility.readConfirmSelection();
-            // If user wants to keep the original value, set the value to null
-            String name = null;
-            String phone = null;
-            String address = null;
-            int rent = 0;
-            String status = null;
-            // Ask user to input the new value
-            if(confirm == 'Y') {
-                System.out.print("Name: ");
-                name = Utility.readString(20);
-                System.out.print("Phone: ");
-                phone = Utility.readString(12);
-                System.out.print("Address: ");
-                address = Utility.readString(30);
-                System.out.print("Rent: ");
-                rent = Utility.readInt();
-                System.out.print("Status: ");
-                status = Utility.readString(10);
-            }
-            // Pass the new values to service
-            if(houseService.modify(id, name, phone, address, rent, status)) {
-                System.out.println("--------------------Modify Success----------------");
-            } else {
-                System.out.println("--------------------Modify Failed-----------------");
-            }
-        } else {
-            System.out.println("--------------------No such house-----------------");
+        if(id == -1) {
+            return;
         }
+        House h = houseService.search(id);
+        if(h == null) {
+            System.out.println("--------------------No such house-----------------");
+            return;
+        }
+        System.out.println("--------------------House Found-------------------");
+        System.out.printf("%-4s%-10s%-12s%-20s%-6s%-10s\n", "ID", "Name", "Phone", "Address", "Rent", "Status");
+        System.out.println(h);
+        System.out.printf("Name(%s): ", h.getName());
+        // If the input is empty, keep the original value
+        String name = Utility.readString(20, "");
+        if(!name.isEmpty()) {
+            h.setName(name);
+        }
+        System.out.printf("Phone(%s): ", h.getPhone());
+        String phone = Utility.readString(12, "");
+        if(!phone.isEmpty()) {
+            h.setPhone(phone);
+        }
+        System.out.printf("Address(%s): ", h.getAddress());
+        String address = Utility.readString(30, "");
+        if(!address.isEmpty()) {
+            h.setAddress(address);
+        }
+        System.out.printf("Rent(%d): ", h.getRent());
+        int rent = Utility.readInt(-1);
+        if(rent != -1) {
+            h.setRent(rent);
+        }
+        System.out.printf("Status(%s): ", h.getStatus());
+        String status = Utility.readString(10, "");
+        if(!status.isEmpty()) {
+            h.setStatus(status);
+        }
+        System.out.println("--------------------Modify Success----------------");
     }
     // Display the houses
     public void listHouses() {
@@ -158,6 +170,10 @@ public class HouseView {
         System.out.println("------------------------End-----------------------");
     }
     public void exit(){
-        loop = false;
+        System.out.print("Are you sure to exit? ");
+        char confirm = Utility.readConfirmSelection();
+        if(confirm == 'Y') {
+            loop = false;
+        }
     }
 }

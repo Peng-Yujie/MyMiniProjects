@@ -78,28 +78,28 @@ public class HouseService {
         houses[houses.length - 1] = null;
         return true;
     }
-    // Modify house: receive the values and return the result
-    public boolean modify(int id, String name, String phone, String address, int rent, String status){
-        // Find the house
-        int i = 0;
-        for(; i < houses.length; i++){
-            if(houses[i].getId() == id){
-                break;
-            }
-        }
-        // If not found, return false
-        if(i == houses.length){
-            return false;
-        }
-        // If found, modify the house
-        // If the value is null, keep the original value
-        houses[i].setName(name == null ? houses[i].getName() : name);
-        houses[i].setPhone(phone == null ? houses[i].getPhone() : phone);
-        houses[i].setAddress(address == null ? houses[i].getAddress() : address);
-        houses[i].setRent(rent == 0 ? houses[i].getRent() : rent);
-        houses[i].setStatus(status == null ? houses[i].getStatus() : status);
-        return true;
-    }
+//    // Modify house: receive the values and return the result
+//    public boolean modify(int id, String name, String phone, String address, int rent, String status){
+//        // Find the house
+//        int i = 0;
+//        for(; i < houses.length; i++){
+//            if(houses[i].getId() == id){
+//                break;
+//            }
+//        }
+//        // If not found, return false
+//        if(i == houses.length){
+//            return false;
+//        }
+//        // If found, modify the house
+//        // If the value is null, keep the original value
+//        houses[i].setName(name == null ? houses[i].getName() : name);
+//        houses[i].setPhone(phone == null ? houses[i].getPhone() : phone);
+//        houses[i].setAddress(address == null ? houses[i].getAddress() : address);
+//        houses[i].setRent(rent == 0 ? houses[i].getRent() : rent);
+//        houses[i].setStatus(status == null ? houses[i].getStatus() : status);
+//        return true;
+//    }
     // Return the houses
     public House[] list(){
         return houses;
