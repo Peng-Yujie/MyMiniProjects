@@ -1,4 +1,7 @@
 package houserental.domain;
+
+import static java.lang.String.format;
+
 /**
  * Information of a house
  */
@@ -69,12 +72,7 @@ public class House {
 
     @Override
     public String toString() {
-        return  id +
-                "\t\t" + name +
-                "\t\t" + phone +
-                "\t" + address +
-                "\t" + rent +
-                "\t" + status;
+        return format("%-4d%-10s%-12s%-20s%-6d%-10s", id, name, phone, address, rent, status);
     }
 
 }

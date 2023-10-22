@@ -30,20 +30,19 @@ public class HouseView {
                     addHouse();
                     break;
                 case '2':
-                    System.out.println("Search House"); // TODO: Search house method
+                    searchHouse();
                     break;
                 case '3':
-                    System.out.println("Delete House"); // TODO: Delete house method
+                    deleteHouse();
                     break;
                 case '4':
-                    System.out.println("Modify House"); // TODO: Modify house method
+                    modifyHouse();
                     break;
                 case '5':
                     listHouses(); // List houses
                     break;
                 case '6':
-                    System.out.println("Exit"); // TODO: Exit method
-                    loop = false;
+                    exit();
                     break;
                 default:
                     System.out.println("Invalid input, please enter again");
@@ -71,17 +70,94 @@ public class HouseView {
             System.out.println("--------------------Add Failed--------------------");
         }
     }
+    // Search house: get the input from user and request search service from HouseService
+    public void searchHouse() {
+        System.out.println("--------------------Search House------------------");
+        System.out.print("Please enter the id of the house: ");
+        int id = Utility.readInt();
+        if(houseService.search(id) != null) {
+            System.out.println("--------------------House Found-------------------");
+            System.out.printf("%-4s%-10s%-12s%-20s%-6s%-10s\n", "ID", "Name", "Phone", "Address", "Rent", "Status");
+            System.out.println(houseService.search(id));
+        } else {
+            System.out.println("--------------------No such house-----------------");
+        }
+    }
+    // Delete house: get the input from user and request delete service from HouseService
+    public void deleteHouse() {
+        System.out.println("--------------------Delete House------------------");
+        System.out.print("Please enter the id of the house: ");
+        int id = Utility.readInt();
+        if(houseService.search(id) != null) {
+            System.out.println("--------------------House Found-------------------");
+            System.out.printf("%-4s%-10s%-12s%-20s%-6s%-10s\n", "ID", "Name", "Phone", "Address", "Rent", "Status");
+            System.out.println(houseService.search(id));
+            System.out.print("Are you sure to delete? ");
+            char confirm = Utility.readConfirmSelection();
+            if(confirm == 'Y') {
+                if(houseService.delete(id)) {
+                    System.out.println("--------------------Delete Success----------------");
+                } else {
+                    System.out.println("--------------------Delete Failed-----------------");
+                }
+            }
+        } else {
+            System.out.println("--------------------No such house-----------------");
+        }
+
+    }
+    // Modify house: get the input from user and request modify service from HouseService
+    public void modifyHouse(){
+        System.out.println("--------------------Modify House------------------");
+        System.out.print("Please enter the id of the house: ");
+        int id = Utility.readInt();
+        if(houseService.search(id) != null) {
+            System.out.println(houseService.search(id));
+            System.out.print("House found, are you sure to modify? ");
+            char confirm = Utility.readConfirmSelection();
+            // If user wants to keep the original value, set the value to null
+            String name = null;
+            String phone = null;
+            String address = null;
+            int rent = 0;
+            String status = null;
+            // Ask user to input the new value
+            if(confirm == 'Y') {
+                System.out.print("Name: ");
+                name = Utility.readString(20);
+                System.out.print("Phone: ");
+                phone = Utility.readString(12);
+                System.out.print("Address: ");
+                address = Utility.readString(30);
+                System.out.print("Rent: ");
+                rent = Utility.readInt();
+                System.out.print("Status: ");
+                status = Utility.readString(10);
+            }
+            // Pass the new values to service
+            if(houseService.modify(id, name, phone, address, rent, status)) {
+                System.out.println("--------------------Modify Success----------------");
+            } else {
+                System.out.println("--------------------Modify Failed-----------------");
+            }
+        } else {
+            System.out.println("--------------------No such house-----------------");
+        }
+    }
     // Display the houses
     public void listHouses() {
 
         System.out.println("--------------------House List--------------------");
-        System.out.println("ID\t\tName\t\tPhone\t\tAddress\t\tRent\t\tStatus");
+        System.out.printf("%-4s%-10s%-12s%-20s%-6s%-10s\n", "ID", "Name", "Phone", "Address", "Rent", "Status");
         House[] houses = houseService.list(); // Get the houses
         for( House h : houses){
             if(h != null){
                 System.out.println(h);
             }
         }
-        System.out.println("------------------------End-----------------------\n");
+        System.out.println("------------------------End-----------------------");
+    }
+    public void exit(){
+        loop = false;
     }
 }
