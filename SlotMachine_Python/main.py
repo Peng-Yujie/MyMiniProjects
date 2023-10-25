@@ -131,6 +131,9 @@ def main():
     balance = deposit()
     while True:
         print(f"Current balance is ${balance}")
+        if balance == 0:
+            print("You have no more money to bet.")
+            break
         answer = input("Press enter to spin (q to quit).")
         if answer == "q":
             break
