@@ -98,6 +98,3 @@ function createCustomer(fullName, nationalID) {
 function updateName(fullName) {
   return { type: "customer/updateName", payload: fullName };
 }
-
-// store.dispatch(deposit(500));
-// console.log(store.getState());
