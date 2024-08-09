@@ -1,0 +1,64 @@
+{
+  "cities": [
+    {
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2027-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": 73930385
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": 17806751
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "cityName": "Vancouver",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2024-04-22T18:50:39.029Z",
+      "notes": "",
+      "position": {
+        "lat": "49.196064000723794",
+        "lng": "-122.94799804687501"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Abrantes",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2024-04-24T17:11:41.118Z",
+      "notes": "",
+      "position": {
+        "lat": "39.58029027440865",
+        "lng": "-8.204337018738407"
+      },
+      "id": 98443199
+    }
+  ]
+}
